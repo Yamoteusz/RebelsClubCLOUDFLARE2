@@ -16,14 +16,14 @@
       "url": "https://www.twardogora.pl"
     },
     {
-      "name": "LOK",
-      "logo": "/images/uploads/logo_lok_3-removebg-preview.webp",
-      "url": "https://lok.org.pl/"
-    },
-    {
       "name": "PFKB",
       "logo": "/images/uploads/306813748_155235063815790_4978382501176837108_n-–-ze-zmianami.png",
       "url": "https://www.facebook.com/polskafederacjakickboxingu"
+    },
+    {
+      "name": "LOK",
+      "logo": "/images/uploads/logo_lok_3-removebg-preview.webp",
+      "url": "https://lok.org.pl/"
     }
   ]
 }
