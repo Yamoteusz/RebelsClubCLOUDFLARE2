@@ -1,7 +1,8 @@
-
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: Yamoteusz/RebelsClubCLOUDFLARE2
+  branch: main # upewnij się czy masz main czy master
+  base_url: https://rebels-auth.whoodil5.workers.dev # To stworzymy w kroku 3
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
