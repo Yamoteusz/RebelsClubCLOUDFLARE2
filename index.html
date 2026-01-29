@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rebels Club — klub sportów walki</title>
+  <meta name="description" content="Rebels Club — klub sportów walki w Twardogórze. Kickboxing, boks, MMA." />
+  <link rel="icon" type="images/uploads/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="images/uploads/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="images/uploads/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="RebelsClub" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img class="brand-logo" src="images/uploads/rebels.png" alt="Rebels Club" />
+        <a href="#top" aria-label="Rebels Club — strona główna" class="club-name">Rebels Club</a>
+      </div>
+      <div class="nav-links" role="navigation" aria-label="Główna nawigacja">
+        <a href="#o-nas">O nas</a>
+        <a href="#trenerzy">Trenerzy</a>
+        <a href="#zawodnicy">Zawodnicy</a>
+        <a href="#grafik">Grafik</a>
+        <a href="#cennik">Cennik</a>
+        <a href="#regulamin">Regulamin</a>
+        <a href="#aktualnosci">Aktualności</a>
+        <a href="#kontakt" class="btn">Dołącz</a>
+        <div id="auth-menu"></div>
+      </div>
+      <button class="nav-toggle btn btn-outline" onclick="document.querySelector('.nav-links')?.classList.toggle('open')">Menu</button>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <span class="chip motto" aria-label="Motto klubu">Dyscyplina • Charakter • Rebelia</span>
+        <h1 class="club-name">Rebels Club — klub sportów walki</h1>
+        <p>Kickboxing • Boks • MMA. <strong class="cta-text"></strong>.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#kontakt" id="cta-trening">Skontaktuj się z nami</a>
+          <a href="#grafik" class="btn btn-outline" aria-label="Zobacz grafik">Zobacz grafik</a>
+        </div>
+        <div id="stats" style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;"></div>
+      </div>
+      <div class="hero-card" aria-label="Grafik skrót">
+        <h3 style="margin:0 0 8px">Dzisiejsze treningi</h3>
+        <p class="meta" id="today-date">—</p>
+        <div id="hero-trainings" class="cards" style="grid-template-columns:1fr;"></div>
+        <a href="#grafik" class="btn" style="margin-top:12px">Pełny grafik</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="o-nas">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">O nas</h2>
+        <span class="chip">#RebelsFightTogether</span>
+      </div>
+      <p>Rebels Club to miejsce, w którym <strong>dyscyplina</strong> spotyka <strong>pasję</strong>. Uczymy fundamentów i pomagamy rozwijać się zawodnikom — w ringu i poza nim. Stawiamy na technikę, kondycję oraz mental.</p>
+    </div>
+  </section>
+
+  <section id="trenerzy">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Trenerzy</h2>
+      </div>
+      <div class="cards" id="trainers"></div>
+    </div>
+  </section>
+
+  <section id="zawodnicy">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Zawodnicy</h2>
+      </div>
+      <div class="cards" id="athletes"></div>
+    </div>
+  </section>
+
+  <section id="grafik">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Grafik treningów</h2>
+      </div>
+      <div class="card">
+        <div class="card-body" style="overflow:auto;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Dzień</th>
+                <th>Godzina</th>
+                <th>Grupa</th>
+                <th>Trener</th>
+                <th>Sala</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cennik">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Cennik</h2>
+      </div>
+      <div class="price-grid" id="pricing"></div>
+      <p class="kudos">* Zniżki dla rodzeństw i uczniów — zapytaj w recepcji.</p>
+    </div>
+  </section>
+
+  <section id="regulamin">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Regulamin klubu</h2>
+      </div>
+      <div class="card">
+        <div class="card-body" id="rules"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="aktualnosci">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Aktualności</h2>
+      </div>
+      <div class="cards" id="news" style="grid-template-columns:1fr;"></div>
+    </div>
+  </section>
+
+ <section id="kontakt">
+  <div class="container">
+    <div class="sec-head"><h2 class="sec-title">Kontakt</h2></div>
+    
+    <div class="contact-wrapper"> 
+      <div class="card" id="contact-block">
+        <div class="card-body">
+          <p class="meta address">Twardogóra, ul. Plac Piastów 24</p>
+          <p class="meta">Mail: <span class="email">kontakt@rebelclub.pl</span></p>
+          
+          <div class="map-container">
+            <iframe 
+              title="Mapa Rebels Club" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade" 
+              src="https://www.google.com/maps?q=Twardog%C3%B3ra%2C%20Plac%20Piast%C3%B3w%2024&output=embed">
+            </iframe>
+          </div>
+
+          <div class="contact-socials">
+            <a class="btn btn-outline ig" href="#">Instagram</a>
+            <a class="btn btn-outline fb" href="#">Facebook</a>
+            <a class="btn btn-outline yt" href="#">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="sponsorzy">
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Partnerzy / Sponsorzy</h2>
+      </div>
+      <div class="sponsors-grid" id="sponsors"></div>
+    </div>
+  </section>
+
+  <footer><div class="container footer-grid"><div><div class="brand" style="margin-bottom:8px;"><img class="brand-logo" src="images/uploads/rebels.png" alt="Rebels Club" /><strong class="club-name">Rebels Club</strong></div><p class="meta">© <span id="year"></span> <span class="club-name">Rebels Club</span>. Wszelkie prawa zastrzeżone.</p></div><div><div class="meta">Regulamin • RODO • Polityka prywatności</div></div></div></div></footer>
+  <script src="js/app.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</body>
+</html>
