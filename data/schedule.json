@@ -93,6 +93,13 @@
     },
     {
       "day": "Piątek",
+      "time": "16:00-17:00",
+      "group": "Zajęcia ogólnorozwojowe dla dzieci 6-9 lat KAMI COACH",
+      "coach": "Kami Coach",
+      "room": "16"
+    },
+    {
+      "day": "Piątek",
       "time": "17:00-18:00",
       "group": "Kickboxing",
       "coach": "Darek",
@@ -100,10 +107,24 @@
     },
     {
       "day": "Piątek",
+      "time": "17:00-18:00",
+      "group": "Stretching KAMI COACH",
+      "coach": "Kami Coach",
+      "room": "16"
+    },
+    {
+      "day": "Piątek",
       "time": "18:15-19:15",
       "group": "MMA",
       "coach": "Darek",
       "room": "17"
+    },
+    {
+      "day": "Sobota",
+      "time": "8:00-9:00",
+      "group": "Trening Obwodowy KAMI COACH",
+      "coach": "Kami Coach",
+      "room": "16"
     }
   ]
 }
