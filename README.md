@@ -32,3 +32,5 @@ Podmień plik `/images/uploads/favicon.ico` (obecnie rękawica bokserska) i zdep
 W `index.html` w sekcji Kontakt znajdziesz iframe z zapytaniem do Google Maps na **Twardogóra, Plac Piastów 24**. Możesz podmienić adres w URL.
 
 Powodzenia! 🥊
+
+Skibidi
