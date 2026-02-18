@@ -80,70 +80,111 @@
     /* .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } */
 }
 
-/* === NOWE STYLE MENU (Dropdown + Mobile) === */
+//* =========================================
+   REBELS CLUB - MENU NAPRAWCZE (FINAL)
+   ========================================= */
 
-/* Reset przycisków w menu */
-.nav-link-btn {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
+/* --- 1. RESET PRZYCISKU (To naprawi szary kloc) --- */
+button.nav-link-btn {
+  appearance: none !important;       /* Wyłącza style systemowe */
+  -webkit-appearance: none !important;
+  background: transparent !important; /* Przezroczyste tło */
+  border: none !important;            /* Brak ramki */
+  box-shadow: none !important;        /* Brak cienia */
+  border-radius: 0 !important;
+  
+  /* Styl tekstu taki sam jak linki obok */
+  color: var(--text, #eef2f7) !important;
+  font-family: inherit !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
   cursor: pointer;
-  padding: 10px;
-  display: flex;
+  
+  /* Układ */
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: color 0.2s ease;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+button.nav-link-btn:hover {
+  color: var(--accent, #e11d48) !important;
 }
 
-/* --- DESKTOP: Dropdown (Klub) --- */
+.arrow {
+  display: inline-block;
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  opacity: 0.8;
+}
+
+/* --- 2. KONTENER MENU NA PC (Dopasowanie) --- */
 @media (min-width: 901px) {
-  .has-dropdown {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  .nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+    overflow: visible !important; /* Ważne, żeby nie ucinało dropdowna */
   }
 
+  /* Kontener przycisku "Klub" */
+  .has-dropdown {
+    position: relative;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 0; /* Obszar łapania myszką */
+  }
+
+  /* --- DROPDOWN (To naprawi rozlany tekst) --- */
   .dropdown-menu {
+    display: flex;          /* Układ Flexbox */
+    flex-direction: column; /* Lista PIONOWA */
+    gap: 2px;
+    
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(15px); /* Startowa pozycja do animacji */
-    background: #12141a;
-    border: 1px solid #1b2030;
+    transform: translateX(-50%) translateY(15px); /* Startowa pozycja */
+    
+    background-color: #12141a !important; /* Ciemne tło karty */
+    border: 1px solid #1b2030 !important;
     border-radius: 12px;
     padding: 8px;
     min-width: 180px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: max-content;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    z-index: 9999;
     
-    /* Ukrywanie */
+    /* Animacja */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s ease-in-out;
   }
 
+  /* Linki wewnątrz dropdowna */
   .dropdown-menu a {
-    display: block;
-    padding: 10px 16px;
-    border-radius: 8px;
-    white-space: nowrap;
-    color: #cbd5e1;
-    transition: background 0.2s;
+    display: block !important;
+    width: 100%;
+    padding: 10px 16px !important;
+    color: #cbd5e1 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500;
+    border-radius: 6px;
+    text-align: left;
+    white-space: nowrap; /* Tekst w jednej linii */
   }
 
   .dropdown-menu a:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
   }
 
-  /* Animacja po najechaniu (Hover) */
+  /* --- EFEKT HOVER (Wysuwanie) --- */
   .has-dropdown:hover .dropdown-menu,
   .has-dropdown:focus-within .dropdown-menu {
     opacity: 1;
@@ -151,137 +192,115 @@
     pointer-events: auto;
     transform: translateX(-50%) translateY(0);
   }
-
-  .arrow {
-    font-size: 0.8em;
-    transition: transform 0.3s;
-  }
   
   .has-dropdown:hover .arrow {
     transform: rotate(180deg);
+    color: var(--accent);
+  }
+  
+  /* Zapobiega znikaniu przy przesuwaniu myszy */
+  .has-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 20px;
   }
 }
 
-/* --- MOBILE: Stylizacja i Animacje --- */
+/* --- 3. WERSJA MOBILNA (Żeby dalej działała super) --- */
 @media (max-width: 900px) {
-  /* Przycisk Burgera - animacja */
   .nav-toggle {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
     background: transparent;
     border: none;
+    padding: 0;
     cursor: pointer;
-    padding: 5px;
-    z-index: 100;
+    z-index: 101;
   }
-
   .bar {
-    width: 28px;
-    height: 3px;
-    background-color: #fff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
   }
+  
+  /* Animacja burgera */
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-  /* Animacja Burgera w "X" */
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* Kontener Menu Mobilnego */
   .nav-links {
     position: fixed;
-    top: 70px; /* Wysokość navbara */
+    top: 70px;
     left: 0;
     right: 0;
     background: rgba(12, 13, 16, 0.98);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #1b2030;
-    flex-direction: column;
-    align-items: flex-start;
+    backdrop-filter: blur(10px);
     padding: 20px;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    border-bottom: 1px solid #1b2030;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     
-    /* Stan zamknięty */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+    transition: 0.3s;
   }
 
-  /* Stan otwarty */
   .nav-links.open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
   }
 
-  /* Linki w mobilce */
-  .nav-links a, .nav-link-btn {
+  .nav-links > a, 
+  button.nav-link-btn {
     width: 100%;
-    padding: 12px 16px;
-    font-size: 18px;
-    border-radius: 8px;
-    text-align: left;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    font-size: 18px !important;
     justify-content: space-between;
   }
-  
-  .nav-links a:hover {
-    background: rgba(255,255,255,0.05);
-  }
 
-  /* Dropdown w mobilce (Accordion) */
+  /* Ukryj domyślny dropdown */
   .dropdown-menu {
-    display: none; /* Domyślnie zwinięte */
-    padding-left: 20px;
-    background: transparent;
-    border: none;
-    box-shadow: none;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
     position: static;
+    padding-left: 15px;
     transform: none;
     opacity: 1;
     visibility: visible;
-    width: 100%;
   }
 
-  .dropdown-menu a {
-    font-size: 16px;
-    color: var(--muted);
-    padding: 10px 16px;
-  }
-
-  /* Klasa dodawana przez JS po kliknięciu w "Klub" */
+  /* Pokaż gdy aktywne (JS) */
   .has-dropdown.active .dropdown-menu {
-    display: block;
-    animation: slideDown 0.3s ease;
+    display: flex;
+    padding-bottom: 10px;
   }
-  
-  .has-dropdown.active .arrow {
-    transform: rotate(180deg);
-  }
-  
+
   .has-dropdown {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
   }
-  
-  .btn-join {
-    margin-top: 10px;
-    text-align: center;
-    justify-content: center;
-    background: var(--accent);
-  }
-}
 
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  .btn.btn-join {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background: var(--accent) !important;
+  }
 }
