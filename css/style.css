@@ -347,3 +347,31 @@
   animation-delay: 0.7s; 
   /* Możesz zmienić na dłuższy czas, np. 0.9s, jeśli ma wjechać na końcu */
 }
+
+/* ============================================================
+   TRAINERS HOVER EFFECT (FIGHTER STYLE)
+   ============================================================ */
+
+.person {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 1;
+}
+
+/* Efekt po najechaniu */
+.person:hover {
+  transform: translateY(-7px) scale(1.02); /* Lekkie powiększenie i w górę */
+  border-color: var(--accent); /* Czerwona ramka */
+  box-shadow: 0 10px 30px rgba(225, 29, 72, 0.25); /* Czerwona poświata */
+  background: #151820; /* Troszkę jaśniejsze tło */
+  z-index: 2;
+}
+
+/* Zdjęcie też może lekko "oddychać" */
+.person img {
+  transition: transform 0.5s ease;
+}
+
+.person:hover img {
+  transform: scale(1.05); /* Zbliżenie na twarz */
+}
