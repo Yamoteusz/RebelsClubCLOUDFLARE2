@@ -250,3 +250,40 @@
 .nav-group.active .arrow { transform: rotate(180deg); }
 
 @keyframes fadeIn { from{opacity:0; transform:translateY(-5px);} to{opacity:1; transform:translateY(0);} }
+
+/* --- BURGER I ANIMACJA --- */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px; /* Wysokość burgera */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002; /* Musi być najwyżej */
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  background-color: #eef2f7;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out; /* Płynna animacja */
+  transform-origin: center;
+}
+
+/* Animacja w "X" (gdy ma klasę .active) */
+.nav-toggle.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.nav-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(10px); /* Lekkie przesunięcie przy znikaniu */
+}
+
+.nav-toggle.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}

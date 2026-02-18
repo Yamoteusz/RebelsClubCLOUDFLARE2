@@ -207,48 +207,49 @@
   <script src="js/app.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navLinks'); // To teraz chwyta overlay
-    const dropdownBtn = document.querySelector('.nav-group .nav-big-link');
-    const dropdownContainer = document.querySelector('.nav-group');
+      const toggle = document.getElementById('navToggle');
+      const menu = document.getElementById('navLinks');
+      const dropdownBtn = document.querySelector('.nav-group .nav-big-link');
+      const dropdownContainer = document.querySelector('.nav-group');
 
-    // 1. Otwieranie / Zamykanie Menu
-    toggle.addEventListener('click', () => {
-      const isOpen = menu.classList.contains('open');
-      
-      if (isOpen) {
-        // Zamykamy
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        // Opcjonalnie zwiń dropdown przy zamknięciu menu
-        if(dropdownContainer) dropdownContainer.classList.remove('active');
-        // Przywróć scrollowanie strony
-        document.body.style.overflow = '';
-      } else {
-        // Otwieramy
-        menu.classList.add('open');
-        toggle.setAttribute('aria-expanded', 'true');
-        // Zablokuj scrollowanie tła
-        document.body.style.overflow = 'hidden';
-      }
-    });
+      // 1. Kliknięcie w Burgera
+      toggle.addEventListener('click', () => {
+        // Przełącz klasę 'open' na menu (pokazuje/ukrywa tło)
+        menu.classList.toggle('open');
+        
+        // KLUCZOWE: Przełącz klasę 'active' na samym burgerze (uruchamia animację X)
+        toggle.classList.toggle('active');
 
-    // 2. Obsługa dropdowna "Klub" (Kliknięcie)
-    if (dropdownBtn) {
-      dropdownBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdownContainer.classList.toggle('active');
+        // Obsługa blokowania przewijania strony
+        if (menu.classList.contains('open')) {
+          toggle.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        } else {
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          // Przy zamknięciu zwiń też podmenu
+          if(dropdownContainer) dropdownContainer.classList.remove('active');
+        }
       });
-    }
 
-    // 3. Zamknij menu po kliknięciu w link
-    menu.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+      // 2. Kliknięcie w link w menu
+      menu.addEventListener('click', (e) => {
+        // Jeśli kliknięto w link (A), ale NIE w rozwijany przycisk "Klub"
+        if (e.target.tagName === 'A') {
+          menu.classList.remove('open');
+          toggle.classList.remove('active'); // Cofnij animację burgera
+          toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // 3. Rozwijanie "Klub"
+      if (dropdownBtn) {
+        dropdownBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdownContainer.classList.toggle('active');
+        });
       }
-    });
   </script>
 </body>
 </html>
