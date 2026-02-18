@@ -80,111 +80,86 @@
     /* .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } */
 }
 
-//* =========================================
-   REBELS CLUB - MENU NAPRAWCZE (FINAL)
-   ========================================= */
+/* ============================================================
+   REBELS CLUB - NAV FINAL (Mobile z Twojego kodu + Fix PC)
+   ============================================================ */
 
-/* --- 1. RESET PRZYCISKU (To naprawi szary kloc) --- */
-button.nav-link-btn {
-  appearance: none !important;       /* Wyłącza style systemowe */
-  -webkit-appearance: none !important;
-  background: transparent !important; /* Przezroczyste tło */
-  border: none !important;            /* Brak ramki */
-  box-shadow: none !important;        /* Brak cienia */
-  border-radius: 0 !important;
-  
-  /* Styl tekstu taki sam jak linki obok */
-  color: var(--text, #eef2f7) !important;
-  font-family: inherit !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
+/* 1. RESET PRZYCISKU (To naprawia wygląd na PC - usuwa szary kloc) */
+.nav-link-btn {
+  background: transparent !important; /* Wymusza brak tła */
+  border: none !important;            /* Wymusza brak ramki */
+  padding: 10px;
   cursor: pointer;
-  
-  /* Układ */
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 !important;
-  margin: 0 !important;
+  gap: 5px;
+  
+  /* Dziedziczenie czcionki żeby wyglądał jak link obok */
+  color: var(--text, #eef2f7);
+  font-family: inherit;
+  font-size: 16px; 
+  font-weight: 600; /* Pogrubienie jak w innych linkach */
   transition: color 0.2s ease;
 }
 
-button.nav-link-btn:hover {
-  color: var(--accent, #e11d48) !important;
+.nav-link-btn:hover {
+  color: var(--accent, #e11d48); /* Podświetlenie po najechaniu */
 }
 
-.arrow {
-  display: inline-block;
-  font-size: 10px;
-  transition: transform 0.3s ease;
-  opacity: 0.8;
+/* Kontener główny linków */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-/* --- 2. KONTENER MENU NA PC (Dopasowanie) --- */
+/* --- DESKTOP (PC) --- */
 @media (min-width: 901px) {
-  .nav-links {
-    display: flex !important;
-    align-items: center !important;
-    gap: 24px !important;
-    overflow: visible !important; /* Ważne, żeby nie ucinało dropdowna */
-  }
-
-  /* Kontener przycisku "Klub" */
   .has-dropdown {
     position: relative;
-    height: auto;
+    height: 100%;
     display: flex;
     align-items: center;
-    padding: 10px 0; /* Obszar łapania myszką */
   }
 
-  /* --- DROPDOWN (To naprawi rozlany tekst) --- */
+  /* Wygląd dymka menu na PC */
   .dropdown-menu {
-    display: flex;          /* Układ Flexbox */
-    flex-direction: column; /* Lista PIONOWA */
-    gap: 2px;
-    
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(15px); /* Startowa pozycja */
-    
-    background-color: #12141a !important; /* Ciemne tło karty */
-    border: 1px solid #1b2030 !important;
+    transform: translateX(-50%) translateY(15px);
+    background: #12141a;       /* Ciemne tło */
+    border: 1px solid #1b2030; /* Ramka */
     border-radius: 12px;
     padding: 8px;
     min-width: 180px;
-    width: max-content;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     
-    /* Animacja */
+    /* Ukrywanie */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100; /* Żeby było nad wszystkim */
   }
 
-  /* Linki wewnątrz dropdowna */
+  /* Linki w środku dymka */
   .dropdown-menu a {
-    display: block !important;
-    width: 100%;
-    padding: 10px 16px !important;
-    color: #cbd5e1 !important;
-    text-decoration: none !important;
-    font-size: 14px !important;
-    font-weight: 500;
-    border-radius: 6px;
-    text-align: left;
-    white-space: nowrap; /* Tekst w jednej linii */
+    display: block;
+    padding: 10px 16px;
+    border-radius: 8px;
+    white-space: nowrap;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
   }
 
   .dropdown-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    color: #fff !important;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
   }
 
-  /* --- EFEKT HOVER (Wysuwanie) --- */
+  /* Logika pokazywania na PC (Hover) */
   .has-dropdown:hover .dropdown-menu,
   .has-dropdown:focus-within .dropdown-menu {
     opacity: 1;
@@ -193,66 +168,71 @@ button.nav-link-btn:hover {
     transform: translateX(-50%) translateY(0);
   }
   
-  .has-dropdown:hover .arrow {
-    transform: rotate(180deg);
-    color: var(--accent);
-  }
-  
-  /* Zapobiega znikaniu przy przesuwaniu myszy */
+  /* Niewidzialny mostek, żeby menu nie znikało przy myszce */
   .has-dropdown::after {
     content: '';
     position: absolute;
-    top: 100%;
+    top: 60%;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: 40px;
+  }
+
+  .arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s;
+  }
+  
+  .has-dropdown:hover .arrow {
+    transform: rotate(180deg);
   }
 }
 
-/* --- 3. WERSJA MOBILNA (Żeby dalej działała super) --- */
+/* --- MOBILE (TELEFON) - To jest Twój działający kod --- */
 @media (max-width: 900px) {
+  /* Burger */
   .nav-toggle {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
+    gap: 5px;
     background: transparent;
     border: none;
-    padding: 0;
     cursor: pointer;
+    padding: 5px;
     z-index: 101;
   }
-  .bar {
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transition: 0.3s;
-  }
-  
-  /* Animacja burgera */
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
-  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
+  .bar {
+    width: 28px;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Animacja ikony X */
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* Kontener menu */
   .nav-links {
     position: fixed;
     top: 70px;
     left: 0;
     right: 0;
     background: rgba(12, 13, 16, 0.98);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 0 !important;
+    backdrop-filter: blur(15px);
     border-bottom: 1px solid #1b2030;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 10px;
     
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: 0.3s;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-links.open {
@@ -261,46 +241,66 @@ button.nav-link-btn:hover {
     transform: translateY(0);
   }
 
-  .nav-links > a, 
-  button.nav-link-btn {
+  /* Styl linków na telefonie */
+  .nav-links a, .nav-link-btn {
     width: 100%;
-    padding: 15px 0 !important;
-    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
-    font-size: 18px !important;
+    padding: 12px 16px;
+    font-size: 18px;
+    border-radius: 8px;
+    text-align: left;
     justify-content: space-between;
+    color: var(--text);
+  }
+  
+  .nav-links a:hover {
+    background: rgba(255,255,255,0.05);
   }
 
-  /* Ukryj domyślny dropdown */
+  /* Lista rozwijana na telefonie (Akordeon) */
   .dropdown-menu {
     display: none;
-    flex-direction: column;
-    width: 100%;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    padding-left: 20px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     position: static;
-    padding-left: 15px;
     transform: none;
     opacity: 1;
     visibility: visible;
+    width: 100%;
   }
 
-  /* Pokaż gdy aktywne (JS) */
+  .dropdown-menu a {
+    font-size: 16px;
+    color: var(--muted);
+    padding: 10px 16px;
+  }
+
+  /* JS dodaje klasę .active po kliknięciu */
   .has-dropdown.active .dropdown-menu {
-    display: flex;
-    padding-bottom: 10px;
+    display: block;
+    animation: slideDown 0.3s ease;
   }
-
+  
+  .has-dropdown.active .arrow {
+    transform: rotate(180deg);
+  }
+  
   .has-dropdown {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .btn.btn-join {
-    width: 100%;
+  
+  .btn-join {
+    margin-top: 10px;
     text-align: center;
-    margin-top: 20px;
-    background: var(--accent) !important;
+    justify-content: center;
+    background: var(--accent);
   }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
