@@ -43,13 +43,6 @@
       "room": "17"
     },
     {
-      "day": "Wtorek",
-      "time": "19:30-20:30",
-      "group": "MMA",
-      "coach": "Darek",
-      "room": "17"
-    },
-    {
       "day": "Środa",
       "time": "17:00-18:00",
       "group": "Zajęcia ogólnorozwojowe dla dzieci 6-9 lat",
@@ -80,13 +73,6 @@
     {
       "day": "Czwartek",
       "time": "19:00-20:00",
-      "group": "MMA",
-      "coach": "Darek",
-      "room": "17"
-    },
-    {
-      "day": "Czwartek",
-      "time": "19:00-20:00",
       "group": "Kalistenika",
       "coach": "Marcin",
       "room": "16"
@@ -111,13 +97,6 @@
       "group": "Stretching KAMI COACH",
       "coach": "Kami Coach",
       "room": "16"
-    },
-    {
-      "day": "Piątek",
-      "time": "18:15-19:15",
-      "group": "MMA",
-      "coach": "Darek",
-      "room": "17"
     },
     {
       "day": "Sobota",
