@@ -287,3 +287,63 @@
 .nav-toggle.active .bar:nth-child(3) {
   transform: translateY(-9px) rotate(-45deg);
 }
+
+/* ============================================================
+   HERO ANIMATIONS (PREMIUM ENTRANCE)
+   ============================================================ */
+
+/* 1. Definicja animacji (Wjazd od dołu + pojawienie się) */
+@keyframes fadeUpPremium {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); /* Startują 30px niżej */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Lądują na miejscu */
+  }
+}
+
+/* 2. Domyślne ukrycie elementów w sekcji Hero */
+.hero .motto,
+.hero h1,
+.hero p,
+.hero .hero-cta,
+.hero #stats,
+.hero .hero-card {
+  opacity: 0; /* Muszą być niewidoczne na start */
+  animation: fadeUpPremium 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* 3. Ustawienie opóźnień (Kolejność wjazdu) */
+
+/* Motto ("Dyscyplina...") - wjeżdża pierwsze */
+.hero .motto {
+  animation-delay: 0.1s;
+}
+
+/* Tytuł "Rebels Club..." */
+.hero h1 {
+  animation-delay: 0.2s;
+}
+
+/* Opis pod tytułem */
+.hero p {
+  animation-delay: 0.3s;
+}
+
+/* Przyciski (Skontaktuj się / Grafik) */
+.hero .hero-cta {
+  animation-delay: 0.5s;
+}
+
+/* Statystyki */
+.hero #stats {
+  animation-delay: 0.6s;
+}
+
+/* Karta z prawej ("Dzisiejsze treningi") */
+.hero .hero-card {
+  animation-delay: 0.7s; 
+  /* Możesz zmienić na dłuższy czas, np. 0.9s, jeśli ma wjechać na końcu */
+}
