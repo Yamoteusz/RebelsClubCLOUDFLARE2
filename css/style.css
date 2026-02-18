@@ -80,3 +80,78 @@
     /* .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } */
 }
 
+/* === NAV DROPDOWN (mobile + desktop) === */
+.nav{ position: sticky; top:0; z-index: 50; }
+
+.nav-inner{ position: relative; }
+
+/* przycisk menu: teraz włączony też na PC */
+.nav-toggle{ display:inline-block; }
+
+/* Menu jako panel z animacją */
+.nav-links{
+  /* panel */
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: min(420px, 92vw);
+  background: rgba(18,20,26,.98);
+  border: 1px solid #1b2030;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  backdrop-filter: blur(10px);
+
+  /* ukrywanie z animacją */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transform: translateY(-8px) scale(.98);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  max-height: 0;
+  overflow: hidden;
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease,
+    max-height .25s ease,
+    visibility 0s linear .18s;
+}
+
+/* otwarte */
+.nav-links.open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  max-height: 70vh;
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease,
+    max-height .35s ease,
+    visibility 0s;
+}
+
+/* linki w dropdownie ładniejsze */
+.nav-links a{
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+.nav-links a:hover{
+  background: #0f1422;
+}
+
+/* na małych ekranach menu ma być pod nav i na pełną szerokość */
+@media (max-width: 860px){
+  .nav-links{
+    left: 0;
+    right: 0;
+    width: auto;
+    margin: 0 0;
+  }
+}
