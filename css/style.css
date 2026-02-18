@@ -80,78 +80,77 @@
     /* .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } */
 }
 
-/* === NAV DROPDOWN (mobile + desktop) === */
-.nav{ position: sticky; top:0; z-index: 50; }
-
-.nav-inner{ position: relative; }
-
-/* przycisk menu: teraz włączony też na PC */
-.nav-toggle{ display:inline-block; }
-
-/* Menu jako panel z animacją */
-.nav-links{
-  /* panel */
+/* === CSS dla menu === */
+.nav-links {
   position: absolute;
+  top: 100%;
   right: 0;
-  top: calc(100% + 10px);
-  width: min(420px, 92vw);
+  width: 250px; /* szerokość menu */
   background: rgba(18,20,26,.98);
   border: 1px solid #1b2030;
   border-radius: 16px;
   padding: 10px;
   box-shadow: 0 18px 40px rgba(0,0,0,.45);
   backdrop-filter: blur(10px);
-
-  /* ukrywanie z animacją */
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  transform: translateY(-8px) scale(.98);
+  
+  /* Menu jest domyślnie ukryte */
   opacity: 0;
   visibility: hidden;
+  transform: translateY(-10px);
   pointer-events: none;
 
-  max-height: 0;
-  overflow: hidden;
-
-  transition:
-    opacity .18s ease,
-    transform .18s ease,
-    max-height .25s ease,
-    visibility 0s linear .18s;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
-/* otwarte */
-.nav-links.open{
+/* Menu rozwinięte */
+.nav-links.open {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
   pointer-events: auto;
-  transform: translateY(0) scale(1);
-  max-height: 70vh;
-
-  transition:
-    opacity .18s ease,
-    transform .18s ease,
-    max-height .35s ease,
-    visibility 0s;
 }
 
-/* linki w dropdownie ładniejsze */
-.nav-links a{
-  padding: 10px 12px;
-  border-radius: 12px;
-}
-.nav-links a:hover{
-  background: #0f1422;
+/* Styl linków w menu */
+.nav-links a {
+  padding: 10px;
+  margin: 8px 0;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
-/* na małych ekranach menu ma być pod nav i na pełną szerokość */
-@media (max-width: 860px){
-  .nav-links{
+.nav-links a:hover {
+  background-color: #333;
+}
+
+/* Styl dla menu mobilnego */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
     left: 0;
     right: 0;
     width: auto;
-    margin: 0 0;
+    margin: 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-toggle {
+    display: none;
   }
 }

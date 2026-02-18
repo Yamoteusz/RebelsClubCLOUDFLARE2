@@ -38,7 +38,6 @@
         <a href="#kontakt" class="btn">Dołącz</a>
         <div id="auth-menu"></div>
       </div>
-
       <button
         class="nav-toggle btn btn-outline"
         id="navToggle"
@@ -196,57 +195,46 @@
   <footer><div class="container footer-grid"><div><div class="brand" style="margin-bottom:8px;"><img class="brand-logo" src="images/uploads/rebels.png" alt="Rebels Club" /><strong class="club-name">Rebels Club</strong></div><p class="meta">© <span id="year"></span> <span class="club-name">Rebels Club</span>. Wszelkie prawa zastrzeżone.</p></div><div><div class="meta">Regulamin • RODO • Polityka prywatności • <a href="/dokumenty.html">Dokumenty</a>
 </div></div></div></div></footer>
   <script src="js/app.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    (function () {
-      const toggle = document.getElementById('navToggle');
-      const menu = document.getElementById('navLinks');
-      if (!toggle || !menu) return;
+    // JavaScript do menu rozwijanego
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navLinks');
 
-      function openMenu() {
+    toggle.addEventListener('click', () => {
+      const isOpen = menu.classList.contains('open');
+      if (isOpen) {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
         menu.classList.add('open');
         toggle.setAttribute('aria-expanded', 'true');
       }
-      function closeMenu() {
+    });
+
+    // Zamknij menu po kliknięciu w link
+    menu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
         menu.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }
-      function isOpen() {
-        return menu.classList.contains('open');
+    });
+
+    // Zamknięcie menu po kliknięciu poza nim
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
       }
+    });
 
-      // klik w przycisk
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        isOpen() ? closeMenu() : openMenu();
-      });
-
-      // klik w link w menu -> zamknij
-      menu.addEventListener('click', (e) => {
-        const a = e.target.closest('a');
-        if (!a) return;
-        closeMenu();
-      });
-
-      // klik poza -> zamknij
-      document.addEventListener('click', (e) => {
-        if (!isOpen()) return;
-        if (menu.contains(e.target) || toggle.contains(e.target)) return;
-        closeMenu();
-      });
-
-      // ESC -> zamknij
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-
-      // jak przechodzisz między breakpointami, żeby nie zostało "zablokowane"
-      window.addEventListener('resize', () => {
-        // na wszelki wypadek domykamy
-        closeMenu();
-      });
-    })();
+    // Obsługa ESC dla zamknięcia menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   </script>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
