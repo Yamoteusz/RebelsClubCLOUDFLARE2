@@ -81,47 +81,60 @@
 }
 
 /* ============================================================
-   REBELS CLUB - BURGER EVERYWHERE (PC & MOBILE)
+   REBELS CLUB - BURGER-FIRST (FULLSCREEN OVERLAY)
    ============================================================ */
 
-/* Kontener prawej strony (Przycisk + Burger) */
+/* Pasek nawigacji (Zawsze na wierzchu) */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 999; /* Bardzo wysoki indeks */
+  background: rgba(12, 13, 16, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1b2030;
+}
+
+.nav-inner {
+  position: relative;
+  z-index: 1000; /* Logo i Burger muszą być nad menu */
+  background: transparent; /* Żeby nie zasłaniało tła */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px; /* Stała wysokość paska */
+}
+
+/* Prawa strona (Przycisk + Burger) */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px; /* Odstęp między przyciskiem a burgerem */
-  z-index: 102; /* Musi być nad menu */
-  position: relative;
+  gap: 15px;
 }
 
-/* Styl przycisku "Dołącz" w nagłówku */
+/* Przycisk "Dołącz" w nagłówku */
 .btn-header {
-  padding: 10px 24px;
+  padding: 8px 20px;
   background: var(--accent);
   color: #fff;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   border-radius: 999px;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
-.btn-header:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
-}
 
-/* Burger (Widoczny ZAWSZE) */
+/* Burger */
 .nav-toggle {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 32px;
-  height: 22px;
+  width: 30px;
+  height: 20px;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 102;
+  z-index: 1001; /* Najwyższy element */
 }
 
 .bar {
@@ -132,43 +145,60 @@
   transition: all 0.3s ease;
 }
 
-/* Animacja Burgera w X */
-.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+/* Animacja X */
+.nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 
-/* --- MENU (OVERLAY NA CAŁY EKRAN) --- */
-.nav-links {
+/* --- MENU PEŁNOEKRANOWE (OVERLAY) --- */
+.nav-links-overlay {
   position: fixed;
-  inset: 0; /* Rozciągnij na cały ekran */
-  background: rgba(12, 13, 16, 0.98);
-  backdrop-filter: blur(20px);
+  inset: 0; /* Rozciąga na cały ekran (top, right, bottom, left) */
+  width: 100vw;
+  height: 100vh;
+  background-color: #0c0d10; /* PEŁNE CZARNE TŁO */
   
   display: flex;
-  flex-direction: column;
-  justify-content: center; /* Wyśrodkuj pionowo */
-  align-items: center;     /* Wyśrodkuj poziomo */
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
   
+  /* Stan domyślny: ukryte */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 100; /* Pod burgerem, ale nad stroną */
+  transition: all 0.4s ease;
+  z-index: 998; /* Pod logo i burgerem */
+  padding-top: 60px; /* Odsunięcie od góry, żeby nie wchodziło pod logo */
 }
 
-/* Menu otwarte */
-.nav-links.open {
+/* Stan otwarty */
+.nav-links-overlay.open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-/* Główne linki w menu */
-.nav-links > a, 
-.nav-link-btn {
-  font-size: 32px; /* Duże litery na PC */
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  /* Animacja wjazdu treści */
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.nav-links-overlay.open .nav-content {
+  transform: translateY(0);
+}
+
+/* Duże linki */
+.nav-big-link {
+  font-size: 28px;
   font-weight: 800;
   color: #fff;
   text-decoration: none;
@@ -180,69 +210,43 @@
   transition: color 0.2s;
 }
 
-.nav-links > a:hover,
-.nav-link-btn:hover {
+.nav-big-link:hover {
   color: var(--accent);
 }
 
-/* --- DROPDOWN (KLUB) W FORMIE AKORDEONU --- */
-.has-dropdown {
+/* --- DROPDOWN (Akordeon) --- */
+.nav-group {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.dropdown-menu {
-  display: none; /* Domyślnie ukryte */
+.dropdown-list {
+  display: none; /* Ukryte */
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: 10px;
-  animation: slideIn 0.3s ease;
+  margin-bottom: 10px;
+  padding: 15px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  width: 100%;
 }
 
-/* Klasa .active dodawana przez JS */
-.has-dropdown.active .dropdown-menu {
-  display: flex;
+.nav-group.active .dropdown-list {
+  display: flex; /* Pokaż po kliknięciu */
+  animation: fadeIn 0.3s ease;
 }
 
-.dropdown-menu a {
-  font-size: 20px; /* Mniejsze niż główne */
+.dropdown-list a {
+  font-size: 18px;
   color: #94a3b8;
-  font-weight: 500;
+  padding: 5px;
 }
-.dropdown-menu a:hover {
-  color: #fff;
-}
+.dropdown-list a:hover { color: #fff; }
 
-.arrow {
-  display: inline-block;
-  font-size: 0.5em;
-  vertical-align: middle;
-  transition: transform 0.3s;
-}
-.has-dropdown.active .arrow {
-  transform: rotate(180deg);
-}
+.arrow { display: inline-block; font-size: 0.6em; transition: 0.3s; margin-left:8px; vertical-align: middle; }
+.nav-group.active .arrow { transform: rotate(180deg); }
 
-/* --- DOSTOSOWANIE DLA TELEFONÓW (Mniejsze czcionki) --- */
-@media (max-width: 600px) {
-  .btn-header {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-  
-  .nav-links > a, 
-  .nav-link-btn {
-    font-size: 24px;
-  }
-  
-  .nav-actions {
-    gap: 10px;
-  }
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeIn { from{opacity:0; transform:translateY(-5px);} to{opacity:1; transform:translateY(0);} }

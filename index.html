@@ -43,13 +43,13 @@
           <span class="bar"></span>
         </button>
       </div>
+    </div>
 
-      <div class="nav-links" id="navLinks" role="navigation">
-        <div class="nav-item has-dropdown">
-          <button class="nav-link-btn">
-            Klub <span class="arrow">▾</span>
-          </button>
-          <div class="dropdown-menu">
+    <div class="nav-links-overlay" id="navLinks">
+      <div class="nav-content">
+        <div class="nav-group has-dropdown">
+          <button class="nav-big-link">Klub <span class="arrow">▾</span></button>
+          <div class="dropdown-list">
             <a href="#o-nas">O nas</a>
             <a href="#trenerzy">Trenerzy</a>
             <a href="#regulamin">Regulamin</a>
@@ -57,11 +57,14 @@
           </div>
         </div>
 
-        <a href="#grafik">Grafik</a>
-        <a href="#cennik">Cennik</a>
-        <a href="#aktualnosci">Aktualności</a>
+        <a href="#grafik" class="nav-big-link">Grafik</a>
+        <a href="#cennik" class="nav-big-link">Cennik</a>
+        <a href="#aktualnosci" class="nav-big-link">Aktualności</a>
         
-        <div id="auth-menu"></div>
+        <div style="margin-top: 40px; display:flex; gap:15px; justify-content:center">
+          <a href="#" style="color:#666">IG</a>
+          <a href="#" style="color:#666">FB</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -204,62 +207,46 @@
   <script src="js/app.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    // Pobieramy elementy
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('navLinks');
-    const dropdownBtn = document.querySelector('.has-dropdown .nav-link-btn');
-    const dropdownContainer = document.querySelector('.has-dropdown');
+    const menu = document.getElementById('navLinks'); // To teraz chwyta overlay
+    const dropdownBtn = document.querySelector('.nav-group .nav-big-link');
+    const dropdownContainer = document.querySelector('.nav-group');
 
-    // 1. Obsługa Burgera (Otwórz/Zamknij główne menu)
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+    // 1. Otwieranie / Zamykanie Menu
+    toggle.addEventListener('click', () => {
       const isOpen = menu.classList.contains('open');
+      
       if (isOpen) {
+        // Zamykamy
         menu.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        // Opcjonalnie zwiń dropdown przy zamknięciu menu
+        if(dropdownContainer) dropdownContainer.classList.remove('active');
+        // Przywróć scrollowanie strony
+        document.body.style.overflow = '';
       } else {
+        // Otwieramy
         menu.classList.add('open');
         toggle.setAttribute('aria-expanded', 'true');
+        // Zablokuj scrollowanie tła
+        document.body.style.overflow = 'hidden';
       }
     });
 
-    // 2. Obsługa rozwijanego menu "Klub" na telefonie
+    // 2. Obsługa dropdowna "Klub" (Kliknięcie)
     if (dropdownBtn) {
       dropdownBtn.addEventListener('click', (e) => {
-        // Tylko na mobilce (gdy menu jest w trybie kolumnowym) lub dotykowo
-        if (window.innerWidth <= 900) {
-          e.preventDefault();
-          dropdownContainer.classList.toggle('active');
-        }
+        e.preventDefault();
+        dropdownContainer.classList.toggle('active');
       });
     }
 
-    // 3. Zamykanie menu po kliknięciu w link
+    // 3. Zamknij menu po kliknięciu w link
     menu.addEventListener('click', (e) => {
-      // Jeśli kliknięto w link (ale nie przycisk rozwijania)
       if (e.target.tagName === 'A') {
         menu.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
-        // Opcjonalnie zamknij też dropdown
-        dropdownContainer.classList.remove('active');
-      }
-    });
-
-    // 4. Kliknięcie poza menu zamyka je
-    document.addEventListener('click', (e) => {
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        dropdownContainer.classList.remove('active');
-      }
-    });
-
-    // 5. Klawisz ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        menu.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-        dropdownContainer.classList.remove('active');
+        document.body.style.overflow = '';
       }
     });
   </script>
