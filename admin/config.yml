@@ -173,4 +173,25 @@ collections:
               - { label: "Logo", name: "logo", widget: "image" }
               - { label: "URL (opcjonalnie)", name: "url", widget: "string", required: false }
               - { label: "Kolejność (1=przód)", name: "order", widget: "number", value_type: "int", required: false }
-         
+
+  - name: "documents"
+    label: "Dokumenty"
+    delete: false
+    editor: { preview: false }
+    files:
+      - file: "data/documents.json"
+        label: "Lista dokumentów"
+        name: "documents"
+        fields:
+          - label: "Dokumenty"
+            name: "ROOT"
+            widget: "list"
+            label_singular: "Dokument"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Tytuł", name: "title", widget: "string" }
+              - { label: "Opis (opcjonalnie)", name: "description", widget: "text", required: false }
+              - { label: "Plik do pobrania", name: "file", widget: "file" }
+              - { label: "Link online (opcjonalnie)", name: "url", widget: "string", required: false }
+              - { label: "Kolejność (1 = najwyżej)", name: "order", widget: "number", value_type: "int", required: false }
+

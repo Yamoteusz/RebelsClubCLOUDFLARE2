@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dokumenty — Rebels Club</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-mark">R</div>
+        <a href="/" class="club-name">Rebels Club</a>
+      </div>
+      <div class="nav-links">
+        <a href="/">Strona główna</a>
+        <a href="/dokumenty.html" class="btn btn-outline">Dokumenty</a>
+      </div>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <div class="sec-head">
+        <h2 class="sec-title">Dokumenty do pobrania</h2>
+      </div>
+
+      <div id="docs" class="cards" style="grid-template-columns:repeat(2,1fr)"></div>
+      <div id="docs-empty" class="card" style="display:none;">
+        <div class="card-body">
+          <h3>Brak dokumentów</h3>
+          <p class="meta">Dodaj pliki w CMS w sekcji „Dokumenty”.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const asList = d => Array.isArray(d) ? d : (d && Array.isArray(d.ROOT) ? d.ROOT : []);
+    async function loadJSON(path, fallback){
+      try{
+        const r = await fetch(path, { cache: 'no-store' });
+        if(!r.ok) throw 0;
+        return await r.json();
+      }catch(e){
+        return fallback;
+      }
+    }
+
+    function extLabel(url){
+      const m = (url||'').split('?')[0].match(/\.([a-z0-9]+)$/i);
+      return m ? m[1].toUpperCase() : 'PLIK';
+    }
+
+    function render(items){
+      const el = document.getElementById('docs');
+      const empty = document.getElementById('docs-empty');
+
+      if(!items.length){
+        el.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      // sort: opcjonalne pole order (1 = najwyżej)
+      items.sort((a,b)=> (a.order||9999) - (b.order||9999));
+
+      el.innerHTML = items.map(d => {
+        const title = d.title || 'Dokument';
+        const desc  = d.description || '';
+        const file  = d.file || '';
+        const badge = extLabel(file);
+
+        return `
+          <div class="card">
+            <div class="card-body">
+              <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+                <h3 style="margin:0">${title}</h3>
+                <span class="chip">${badge}</span>
+              </div>
+              ${desc ? `<p class="meta" style="margin-top:8px">${desc}</p>` : `<p class="meta" style="margin-top:8px"> </p>`}
+              <div style="display:flex;gap:10px;margin-top:12px">
+                <a class="btn" href="${file}" download>Pobierz</a>
+                ${d.url ? `<a class="btn btn-outline" href="${d.url}" target="_blank" rel="noopener">Otwórz online</a>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    (async ()=>{
+      const data = await loadJSON('/data/documents.json', { ROOT: [] });
+      render(asList(data));
+    })();
+  </script>
+</body>
+</html>
