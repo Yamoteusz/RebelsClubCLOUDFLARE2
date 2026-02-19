@@ -69,6 +69,11 @@
           <a href="https://www.facebook.com/lokrebelsclub" style="color:#666">FB</a>
           <a href="https://www.tiktok.com/@lok_rebelsclub" style="color:#666">TT</a>
         </div>
+
+        <button id="installAppBtn" class="btn" style="display: none; margin-top: 20px; width: 100%; font-size: 15px;">
+          📲 Zainstaluj aplikację
+        </button>
+
       </div>
     </div>
   </nav>
@@ -221,6 +226,18 @@
     </div>
   </footer>
 
+  <div id="iosInstallPrompt" class="ios-prompt-overlay" style="display: none;">
+    <div class="ios-prompt-box">
+      <h3 style="margin-top: 0; color: #fff;">Zainstaluj Rebels Club</h3>
+      <p style="color: var(--muted); font-size: 14px;">Aby dodać naszą apkę na iPhone'a:</p>
+      <ol style="text-align: left; margin-bottom: 24px; color: #eef2f7; font-size: 15px; line-height: 1.5;">
+        <li style="margin-bottom: 10px;">Kliknij ikonę udostępniania <strong>📤</strong> na dole ekranu.</li>
+        <li>Przewiń w dół i wybierz <strong>"Do ekranu początkowego" ➕</strong>.</li>
+      </ol>
+      <button id="closeIosPrompt" class="btn btn-outline" style="width: 100%;">Rozumiem, zamykam</button>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   
@@ -317,5 +334,66 @@
       });
     }
   </script>
+
+  <script>
+    // Logika instalacji PWA (Android + iOS)
+    document.addEventListener("DOMContentLoaded", () => {
+      const installBtn = document.getElementById('installAppBtn');
+      const iosPrompt = document.getElementById('iosInstallPrompt');
+      const closeIosBtn = document.getElementById('closeIosPrompt');
+      let deferredPrompt;
+
+      // 1. Sprawdzamy, czy użytkownik ma iOS (iPhone/iPad)
+      const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test(userAgent);
+      };
+
+      // 2. Sprawdzamy, czy aplikacja jest JUŻ zainstalowana (standalone)
+      const isInStandaloneMode = () => {
+        return ('standalone' in window.navigator && window.navigator.standalone) 
+            || window.matchMedia('(display-mode: standalone)').matches;
+      };
+
+      // 3. Jeśli NIE jest zainstalowana, obsługujemy wyświetlanie przycisku
+      if (!isInStandaloneMode()) {
+        if (isIos()) {
+          // --- ŚCIEŻKA DLA APPLE (iOS) ---
+          // Na iOS przeglądarka nie blokuje przycisku, więc pokazujemy go od razu
+          installBtn.style.display = 'inline-block';
+          installBtn.addEventListener('click', () => {
+            iosPrompt.style.display = 'flex'; // Pokazujemy instrukcję okienkową
+          });
+        } else {
+          // --- ŚCIEŻKA DLA ANDROIDA / PC ---
+          window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); // Blokujemy domyślny baner
+            deferredPrompt = e; // Zapisujemy zdarzenie do późniejszego wywołania
+            installBtn.style.display = 'inline-block'; // Pokazujemy Twój przycisk
+          });
+
+          installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+              deferredPrompt.prompt(); // Wywołujemy systemowe okienko "Zainstaluj"
+              const { outcome } = await deferredPrompt.userChoice;
+              if (outcome === 'accepted') {
+                console.log('PWA zainstalowane!');
+                installBtn.style.display = 'none'; // Ukrywamy przycisk po sukcesie
+              }
+              deferredPrompt = null;
+            }
+          });
+        }
+      }
+
+      // 4. Zamykanie instrukcji dla iOS
+      if (closeIosBtn) {
+        closeIosBtn.addEventListener('click', () => {
+          iosPrompt.style.display = 'none';
+        });
+      }
+    });
+  </script>
+  
 </body>
 </html>

@@ -275,3 +275,33 @@ footer{padding:40px 0 56px;border-top:1px solid #121622;color:var(--muted)}
 .hero .hero-cta { animation-delay: 0.5s; }
 .hero #stats { animation-delay: 0.6s; }
 .hero .hero-card { animation-delay: 0.7s; }
+
+/* --- OKIENKO INSTALACJI PWA DLA IOS --- */
+.ios-prompt-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Pojawia się od dołu ekranu */
+  z-index: 99999; /* Bardzo wysoko, żeby przykryło wszystko */
+  padding-bottom: 40px;
+}
+
+.ios-prompt-box {
+  background: var(--card);
+  border: 1px solid var(--accent);
+  padding: 24px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(225, 29, 72, 0.4);
+  animation: slideUpModal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideUpModal {
+  from { transform: translateY(100px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
