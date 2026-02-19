@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="pl">
 <head>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rebels Club — klub sportów walki</title>
   <meta name="description" content="Rebels Club — klub sportów walki w Twardogórze. Kickboxing, boks, MMA." />
   <meta property="og:title" content="Rebels Club" />
   <meta property="og:description" content="Rebels Club Twardogóra – Kickboxing, Boks, MMA Opis: Dołącz do ekipy Rebels Club! Prowadzimy profesjonalne treningi sportów walki dla każdego, niezależnie od poziomu zaawansowania. Buduj formę, charakter i umiejętności pod okiem doświadczonych trenerów." />
-  <meta property="og:image" content="https://www.rebelsclub.pl/obrazek-podgladu.jpg" />
+  <meta property="og:image" content="images/uploads/strona-podglad.jpg" />
   <meta property="og:url" content="https://www.rebelsclub.pl" />
   <meta property="og:type" content="website" />
 
-<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="images/uploads/png" href="/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="images/uploads/svg+xml" href="/favicon.svg" />
   <link rel="shortcut icon" href="images/uploads/favicon.ico" />
@@ -92,29 +93,29 @@
 
   <section id="o-nas">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">O nas</h2>
         <span class="chip">#RebelsFightTogether</span>
       </div>
-      <p>Rebels Club to miejsce, w którym <strong>dyscyplina</strong> spotyka <strong>pasję</strong>. Uczymy fundamentów i pomagamy rozwijać się zawodnikom — w ringu i poza nim. Stawiamy na technikę, kondycję oraz mental.</p>
+      <p data-aos="fade-up" data-aos-delay="100">Rebels Club to miejsce, w którym <strong>dyscyplina</strong> spotyka <strong>pasję</strong>. Uczymy fundamentów i pomagamy rozwijać się zawodnikom — w ringu i poza nim. Stawiamy na technikę, kondycję oraz mental.</p>
     </div>
   </section>
 
   <section id="trenerzy">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Trenerzy</h2>
       </div>
-      <div class="cards" id="trainers"></div>
+      <div class="cards" id="trainers" data-aos="fade-up" data-aos-delay="100"></div>
     </div>
   </section>
 
   <section id="grafik">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Grafik treningów</h2>
       </div>
-      <div class="card">
+      <div class="card" data-aos="fade-up" data-aos-delay="100">
         <div class="card-body" style="overflow:auto;">
           <table class="table">
             <thead>
@@ -135,20 +136,20 @@
 
   <section id="cennik">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Cennik</h2>
       </div>
-      <div class="price-grid" id="pricing"></div>
-      <p class="kudos">* Zniżki dla rodzeństw i uczniów — zapytaj w recepcji.</p>
+      <div class="price-grid" id="pricing" data-aos="fade-up" data-aos-delay="100"></div>
+      <p class="kudos" data-aos="fade-up" data-aos-delay="200">* Zniżki dla rodzeństw i uczniów — zapytaj w recepcji.</p>
     </div>
   </section>
 
   <section id="regulamin">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Regulamin klubu</h2>
       </div>
-      <div class="card">
+      <div class="card" data-aos="zoom-in" data-aos-delay="100">
         <div class="card-body" id="rules"></div>
       </div>
     </div>
@@ -156,18 +157,18 @@
 
   <section id="aktualnosci">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Aktualności</h2>
       </div>
-      <div class="cards" id="news" style="grid-template-columns:1fr;"></div>
+      <div class="cards" id="news" style="grid-template-columns:1fr;" data-aos="fade-up" data-aos-delay="100"></div>
     </div>
   </section>
 
  <section id="kontakt">
   <div class="container">
-    <div class="sec-head"><h2 class="sec-title">Kontakt</h2></div>
+    <div class="sec-head" data-aos="fade-up"><h2 class="sec-title">Kontakt</h2></div>
     
-    <div class="contact-wrapper"> 
+    <div class="contact-wrapper" data-aos="fade-up" data-aos-delay="100"> 
       <div class="card" id="contact-block">
         <div class="card-body">
           <p class="meta address">Twardogóra, ul. Plac Piastów 24</p>
@@ -195,61 +196,109 @@
 
   <section id="sponsorzy">
     <div class="container">
-      <div class="sec-head">
+      <div class="sec-head" data-aos="fade-up">
         <h2 class="sec-title">Partnerzy / Sponsorzy</h2>
       </div>
-      <div class="sponsors-grid" id="sponsors"></div>
+      <div class="sponsors-grid" id="sponsors" data-aos="fade-up" data-aos-delay="100"></div>
     </div>
   </section>
 
-  <footer><div class="container footer-grid"><div><div class="brand" style="margin-bottom:8px;"><img class="brand-logo" src="images/uploads/rebels.png" alt="Rebels Club" /><strong class="club-name">Rebels Club</strong></div><p class="meta">© <span id="year"></span> <span class="club-name">Rebels Club</span>. Wszelkie prawa zastrzeżone.</p></div><div><div class="meta">Regulamin • RODO • Polityka prywatności • <a href="/dokumenty.html">Dokumenty</a>
-</div></div></div></div></footer>
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:8px;">
+          <img class="brand-logo" src="images/uploads/rebels.png" alt="Rebels Club" />
+          <strong class="club-name">Rebels Club</strong>
+        </div>
+        <p class="meta">© <span id="year"></span> <span class="club-name">Rebels Club</span>. Wszelkie prawa zastrzeżone.</p>
+      </div>
+      <div>
+        <div class="meta">Regulamin • RODO • Polityka prywatności • <a href="/dokumenty.html">Dokumenty</a></div>
+      </div>
+    </div>
+  </footer>
+
   <script src="js/app.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  
   <script>
+      // Obsługa nawigacji mobilnej
       const toggle = document.getElementById('navToggle');
       const menu = document.getElementById('navLinks');
       const dropdownBtn = document.querySelector('.nav-group .nav-big-link');
       const dropdownContainer = document.querySelector('.nav-group');
 
-      // 1. Kliknięcie w Burgera
       toggle.addEventListener('click', () => {
-        // Przełącz klasę 'open' na menu (pokazuje/ukrywa tło)
         menu.classList.toggle('open');
-        
-        // KLUCZOWE: Przełącz klasę 'active' na samym burgerze (uruchamia animację X)
         toggle.classList.toggle('active');
-
-        // Obsługa blokowania przewijania strony
         if (menu.classList.contains('open')) {
           toggle.setAttribute('aria-expanded', 'true');
           document.body.style.overflow = 'hidden';
         } else {
           toggle.setAttribute('aria-expanded', 'false');
           document.body.style.overflow = '';
-          // Przy zamknięciu zwiń też podmenu
           if(dropdownContainer) dropdownContainer.classList.remove('active');
         }
       });
 
-      // 2. Kliknięcie w link w menu
       menu.addEventListener('click', (e) => {
-        // Jeśli kliknięto w link (A), ale NIE w rozwijany przycisk "Klub"
         if (e.target.tagName === 'A') {
           menu.classList.remove('open');
-          toggle.classList.remove('active'); // Cofnij animację burgera
+          toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
           document.body.style.overflow = '';
         }
       });
 
-      // 3. Rozwijanie "Klub"
       if (dropdownBtn) {
         dropdownBtn.addEventListener('click', (e) => {
           e.preventDefault();
           dropdownContainer.classList.toggle('active');
         });
       }
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+
+    // Skrypt do dynamicznej animacji liczników w sekcji statystyk
+    document.addEventListener("DOMContentLoaded", () => {
+      const statsContainer = document.getElementById('stats');
+      if(statsContainer) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.addedNodes.length > 0) {
+              const values = statsContainer.querySelectorAll('.v');
+              values.forEach(el => {
+                const text = el.innerText;
+                const target = parseInt(text.replace(/[^0-9]/g, '')); // wyciąga samą liczbę
+                if(!isNaN(target) && target > 0) {
+                  let count = 0;
+                  const speed = target / 40; // Im mniejsza liczba, tym szybsza animacja
+                  const update = () => {
+                    count += speed;
+                    if(count < target) {
+                      el.innerText = Math.ceil(count) + (text.includes('+') ? '+' : '');
+                      requestAnimationFrame(update);
+                    } else {
+                      el.innerText = text;
+                    }
+                  };
+                  update();
+                }
+              });
+              observer.disconnect(); // Odpala się tylko przy pierwszym załadowaniu danych
+            }
+          });
+        });
+        observer.observe(statsContainer, { childList: true, subtree: true });
+      }
+    });
   </script>
 </body>
 </html>
