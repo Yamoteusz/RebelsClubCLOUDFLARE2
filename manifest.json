@@ -1,0 +1,21 @@
+{
+  "name": "Rebels Club Twardogóra",
+  "short_name": "RebelsClub",
+  "description": "Klub sportów walki: Kickboxing, Boks, MMA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0d10",
+  "theme_color": "#e11d48",
+  "icons": [
+    {
+      "src": "/images/uploads/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/uploads/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

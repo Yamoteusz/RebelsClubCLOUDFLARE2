@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="pl">
 <head>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0c0d10">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -300,6 +302,20 @@
         observer.observe(statsContainer, { childList: true, subtree: true });
       }
     });
+  </script>
+  <script>
+    // Rejestracja Service Workera dla PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('PWA: ServiceWorker zarejestrowany sukcesem!');
+          })
+          .catch(err => {
+            console.log('PWA: Błąd rejestracji ServiceWorkera: ', err);
+          });
+      });
+    }
   </script>
 </body>
 </html>
