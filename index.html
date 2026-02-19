@@ -70,9 +70,15 @@
           <a href="https://www.tiktok.com/@lok_rebelsclub" style="color:#666">TT</a>
         </div>
 
-        <button id="installAppBtn" class="btn" style="display: none; margin-top: 20px; width: 100%; font-size: 15px;">
-          📲 Zainstaluj aplikację
-        </button>
+        <div id="installPromptOverlay" class="ios-prompt-overlay" style="display: none;">
+            <div class="ios-prompt-box">
+              <h3 style="margin-top: 0; color: #fff;">Zainstaluj apke Rebels Club</h3>
+              
+              <div id="installInstructions" style="color: #eef2f7; font-size: 15px; line-height: 1.5; text-align: left; margin-bottom: 24px;"></div>
+              
+              <button id="closeInstallPrompt" class="btn btn-outline" style="width: 100%;">Rozumiem, zamykam</button>
+            </div>
+          </div>
 
       </div>
     </div>
@@ -336,60 +342,77 @@
   </script>
 
   <script>
-    // Logika instalacji PWA (Android + iOS)
+    // Logika instalacji PWA (Uniwersalna: Android + iOS)
     document.addEventListener("DOMContentLoaded", () => {
       const installBtn = document.getElementById('installAppBtn');
-      const iosPrompt = document.getElementById('iosInstallPrompt');
-      const closeIosBtn = document.getElementById('closeIosPrompt');
-      let deferredPrompt;
+      const promptOverlay = document.getElementById('installPromptOverlay');
+      const closePromptBtn = document.getElementById('closeInstallPrompt');
+      const installInstructions = document.getElementById('installInstructions');
+      let deferredPrompt = null;
 
-      // 1. Sprawdzamy, czy użytkownik ma iOS (iPhone/iPad)
-      const isIos = () => {
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        return /iphone|ipad|ipod/.test(userAgent);
-      };
+      // 1. Wykrywanie systemu (Czy to iPhone/iPad?)
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      const isIos = /iphone|ipad|ipod/.test(userAgent);
 
-      // 2. Sprawdzamy, czy aplikacja jest JUŻ zainstalowana (standalone)
+      // 2. Sprawdzamy, czy aplikacja JUŻ jest zainstalowana na pulpicie
       const isInStandaloneMode = () => {
         return ('standalone' in window.navigator && window.navigator.standalone) 
             || window.matchMedia('(display-mode: standalone)').matches;
       };
 
-      // 3. Jeśli NIE jest zainstalowana, obsługujemy wyświetlanie przycisku
-      if (!isInStandaloneMode()) {
-        if (isIos()) {
-          // --- ŚCIEŻKA DLA APPLE (iOS) ---
-          // Na iOS przeglądarka nie blokuje przycisku, więc pokazujemy go od razu
-          installBtn.style.display = 'inline-block';
-          installBtn.addEventListener('click', () => {
-            iosPrompt.style.display = 'flex'; // Pokazujemy instrukcję okienkową
-          });
-        } else {
-          // --- ŚCIEŻKA DLA ANDROIDA / PC ---
-          window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); // Blokujemy domyślny baner
-            deferredPrompt = e; // Zapisujemy zdarzenie do późniejszego wywołania
-            installBtn.style.display = 'inline-block'; // Pokazujemy Twój przycisk
-          });
+      // 3. Nasłuchujemy na natywne zdarzenie instalacji Androida (w tle)
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); // Blokujemy domyślny, mały baner Google
+        deferredPrompt = e; // Zapisujemy "zgodę" na wywołanie instalacji 1-kliknięciem
+      });
 
-          installBtn.addEventListener('click', async () => {
-            if (deferredPrompt) {
-              deferredPrompt.prompt(); // Wywołujemy systemowe okienko "Zainstaluj"
-              const { outcome } = await deferredPrompt.userChoice;
-              if (outcome === 'accepted') {
-                console.log('PWA zainstalowane!');
-                installBtn.style.display = 'none'; // Ukrywamy przycisk po sukcesie
-              }
-              deferredPrompt = null;
+      // 4. Jeśli apka NIE JEST zainstalowana - na stałe pokazujemy Twój przycisk w menu!
+      if (!isInStandaloneMode() && installBtn) {
+        installBtn.style.display = 'inline-block';
+
+        // Co się dzieje po kliknięciu "Zainstaluj apkę"?
+        installBtn.addEventListener('click', async () => {
+          
+          // SCENARIUSZ A: Android jest w 100% gotowy na natywną instalację (jeden klik)
+          if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+              console.log('Zainstalowano PWA!');
+              installBtn.style.display = 'none'; // Ukrywamy przycisk po sukcesie
             }
-          });
-        }
+            deferredPrompt = null;
+          } 
+          
+          // SCENARIUSZ B: To jest iOS, ALBO Android zablokował natywne okienko
+          else {
+            if (isIos) {
+              // Wstrzykujemy instrukcję dla Apple
+              installInstructions.innerHTML = `
+                <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">Aby dodać apkę na iPhone'a:</p>
+                <ol style="padding-left: 20px;">
+                  <li style="margin-bottom: 10px;">Kliknij ikonę udostępniania <strong>📤</strong> na dole ekranu.</li>
+                  <li>Wybierz opcję <strong>"Do ekranu początkowego" ➕</strong>.</li>
+                </ol>`;
+            } else {
+              // Wstrzykujemy instrukcję awaryjną dla Androida
+              installInstructions.innerHTML = `
+                <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">Aby dodać apkę na Androidzie:</p>
+                <ol style="padding-left: 20px;">
+                  <li style="margin-bottom: 10px;">Kliknij przycisk menu (trzy kropki <strong>⋮</strong>) w prawym górnym rogu przeglądarki.</li>
+                  <li>Wybierz z listy opcję <strong>"Dodaj do ekranu głównego"</strong>.</li>
+                </ol>`;
+            }
+            // Wyświetlamy nasze okienko!
+            promptOverlay.style.display = 'flex';
+          }
+        });
       }
 
-      // 4. Zamykanie instrukcji dla iOS
-      if (closeIosBtn) {
-        closeIosBtn.addEventListener('click', () => {
-          iosPrompt.style.display = 'none';
+      // Zamykanie okienka
+      if (closePromptBtn) {
+        closePromptBtn.addEventListener('click', () => {
+          promptOverlay.style.display = 'none';
         });
       }
     });
