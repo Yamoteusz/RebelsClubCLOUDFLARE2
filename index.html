@@ -169,6 +169,59 @@
     </div>
   </section>
 
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head" data-aos="fade-up">
+        <h2 class="sec-title">Często zadawane pytania</h2>
+        <span class="chip">FAQ</span>
+      </div>
+      
+      <div class="faq-container" data-aos="fade-up" data-aos-delay="100">
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Czy muszę mieć swój sprzęt na pierwszy trening?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>Nie! Na początek wystarczy Ci zwykły, wygodny strój sportowy (koszulka, spodenki), butelka wody i ręcznik. Rękawice i ochraniacze klubowe udostępniamy na miejscu. Własny sprzęt kupisz, gdy zdecydujesz, że to sport dla Ciebie.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Nigdy nie trenowałem sportów walki. Czy sobie poradzę?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>Oczywiście! Mamy grupy dedykowane całkowicie dla osób początkujących. Nasi trenerzy uczą wszystkiego od zera – od prawidłowej postawy, przez trzymanie gardy, aż po wyprowadzanie ciosów. Każdy kiedyś zaczynał!</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Czy na pierwszych zajęciach będę musiał sparować (walczyć)?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutnie nie. Sparingi są przeznaczone tylko dla osób z odpowiednim stażem i są całkowicie dobrowolne. Na początkowym etapie skupiamy się wyłącznie na technice, pracy na tarczach i workach oraz poprawie kondycji.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Od jakiego wieku można zacząć treningi?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-answer">
+            <p>Prowadzimy zajęcia ogólnorozwojowe z elementami sportów walki dla dzieci już od 6 do 9 roku życia. Dla starszych dzieci i młodzieży mamy osobne grupy. Sporty walki świetnie budują dyscyplinę i pewność siebie u najmłodszych.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="aktualnosci">
     <div class="container">
       <div class="sec-head" data-aos="fade-up">
@@ -421,6 +474,36 @@
           promptOverlay.style.display = 'none';
         });
       }
+    });
+  </script>
+
+  <script>
+    // Logika dla sekcji FAQ (Akordeon)
+    document.addEventListener("DOMContentLoaded", () => {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const item = question.parentElement;
+          const answer = item.querySelector('.faq-answer');
+          
+          // Jeśli klikamy w otwarte pytanie - zamknij je
+          if (item.classList.contains('active')) {
+            item.classList.remove('active');
+            answer.style.maxHeight = null;
+          } else {
+            // Zamknij wszystkie inne otwarte pytania (opcjonalne, ale wygląda profesjonalniej)
+            document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+              activeItem.classList.remove('active');
+              activeItem.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            // Otwórz kliknięte pytanie
+            item.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + "px"; // scrollHeight automatycznie dobiera wysokość tekstu
+          }
+        });
+      });
     });
   </script>
   

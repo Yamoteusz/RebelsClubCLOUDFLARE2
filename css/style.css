@@ -355,3 +355,109 @@ footer{padding:40px 0 56px;border-top:1px solid #121622;color:var(--muted)}
   }
 }
 
+/* ============================================================
+   SEKCJA FAQ (Akordeon)
+   ============================================================ */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto; /* Wyśrodkowanie kontenera */
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid #1b2030;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  border-color: #2a2f3a;
+}
+
+.faq-item.active {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(225, 29, 72, 0.15);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.faq-item.active .faq-question {
+  color: var(--accent);
+}
+
+/* Ikonka Plusa/Minusa */
+.faq-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background-color: var(--muted);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.faq-item.active .faq-icon::before,
+.faq-item.active .faq-icon::after {
+  background-color: var(--accent);
+}
+
+/* Pozioma kreska plusa */
+.faq-icon::before {
+  top: 9px;
+  left: 0;
+  width: 20px;
+  height: 2px;
+}
+
+/* Pionowa kreska plusa */
+.faq-icon::after {
+  top: 0;
+  left: 9px;
+  width: 2px;
+  height: 20px;
+}
+
+/* Animacja zamiany Plusa w Minus */
+.faq-item.active .faq-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.faq-answer p {
+  padding: 0 20px 20px 20px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
