@@ -10,8 +10,13 @@
     },
     {
       "name": "Brajan",
-      "role": "Media BOSS",
+      "role": "CEO dział media",
       "photo": "/images/uploads/bryan.png"
+    },
+    {
+      "name": "Szymon Chołodecki",
+      "role": "Trener Kickboxingu",
+      "photo": "/images/uploads/szymon.jpg"
     }
   ]
 }
