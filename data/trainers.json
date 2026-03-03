@@ -2,21 +2,27 @@
   "ROOT": [
     {
       "name": "Dariusz Tyczyński",
-      "photo": "/images/uploads/bez-nazwy-1.png"
+      "photo": "/images/uploads/bez-nazwy-1.png",
+      "role": "Trener Kickboxingu, MMA, Skarbnik"
     },
     {
       "name": "Marcin Kałużny",
-      "photo": "/images/uploads/marcinn.png"
-    },
-    {
-      "name": "Brajan",
-      "role": "CEO dział media",
-      "photo": "/images/uploads/bryan.png"
+      "photo": "/images/uploads/marcinn.png",
+      "role": "Trener Boksu, Kalisteniki, Sekretarz"
     },
     {
       "name": "Szymon Chołodecki",
       "role": "Trener Kickboxingu",
       "photo": "/images/uploads/szymon.jpg"
+    },
+    {
+      "name": "Kacper Szuster",
+      "role": "Prezes zarządu"
+    },
+    {
+      "name": "Brajan Sieroń",
+      "role": "CEO dział media",
+      "photo": "/images/uploads/bryan.png"
     }
   ]
 }
