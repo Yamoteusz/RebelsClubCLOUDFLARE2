@@ -3,36 +3,43 @@
     {
       "name": "Dariusz Tyczyński",
       "photo": "/images/uploads/bez-nazwy-1.png",
-      "role": "Trener Kickboxingu, MMA, Skarbnik"
+      "role": "Trener Kickboxingu, MMA, Skarbnik",
+      "tags": [
+        "Trener",
+        "Zarząd"
+      ]
     },
     {
       "name": "Marcin Kałużny",
       "photo": "/images/uploads/marcinn.png",
-      "role": "Trener Boksu, Kalisteniki, Sekretarz"
+      "role": "Trener Boksu, Kalisteniki, Sekretarz",
+      "tags": [
+        "Trener",
+        "Zarząd"
+      ]
     },
     {
       "name": "Szymon Chołodecki",
       "role": "Trener Kickboxingu",
-      "photo": "/images/uploads/608678236_25453840820941186_1991291352263716110_n.jpg"
+      "photo": "/images/uploads/608678236_25453840820941186_1991291352263716110_n.jpg",
+      "tags": [
+        "Trener"
+      ]
     },
     {
       "name": "Kacper Szuster",
       "role": "Prezes zarządu",
-      "tags": [],
+      "tags": [
+        "Zarząd",
+        "CEO"
+      ],
       "photo": "/images/uploads/421955660_1073128760403762_8098426164833236068_n.jpg"
     },
     {
       "name": "Brajan Sieroń",
       "role": "Social Media Director",
-      "photo": "/images/uploads/97e72acb-beed-4409-adbe-62af62878026.jpg"
-    },
-    {
-      "name": "Mateusz Szczepaniak",
-      "role": "Social Media Trainee",
-      "tags": [
-        "Social Media"
-      ],
-      "photo": "/images/uploads/ea67d02d-69cc-4814-a253-39149dd50b0f.jpg"
+      "photo": "/images/uploads/ee20b55f-14e3-45c0-bf30-a026416ac4d5.jpg",
+      "alt": "Social Media"
     }
   ]
 }
