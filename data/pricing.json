@@ -1,1 +1,8 @@
-{ "ROOT": [] }
+{
+  "ROOT": [
+    {
+      "name": "Składka/karnet miesięczny do 18lat",
+      "price": "170 zł"
+    }
+  ]
+}
