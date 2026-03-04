@@ -39,7 +39,18 @@
       "name": "Brajan Sieroń",
       "role": "Social Media Director",
       "photo": "/images/uploads/ee20b55f-14e3-45c0-bf30-a026416ac4d5.jpg",
-      "alt": "Social Media"
+      "alt": "",
+      "tags": [
+        "Social Media"
+      ]
+    },
+    {
+      "name": "Mateusz Szczepaniak",
+      "role": "Social Media Trainee",
+      "tags": [
+        "Social Media"
+      ],
+      "photo": "/images/uploads/ea67d02d-69cc-4814-a253-39149dd50b0f.jpg"
     }
   ]
 }
