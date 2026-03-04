@@ -1,8 +1,12 @@
 {
   "ROOT": [
     {
-      "name": "Składka/karnet miesięczny do 18lat",
-      "price": "170 zł"
+      "name": "Do 18 lat ",
+      "price": "170 zł miesięcznie"
+    },
+    {
+      "name": "Dorośli",
+      "price": "200 zł miesięcznie"
     }
   ]
 }
