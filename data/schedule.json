@@ -2,15 +2,8 @@
   "ROOT": [
     {
       "day": "Poniedziałek",
-      "time": "17:00-18:00",
-      "group": "Zajęcia ogólnorozwojowe dla dzieci 6-9 lat ",
-      "coach": "Marcin",
-      "room": "17"
-    },
-    {
-      "day": "Poniedziałek",
-      "time": "18:15-19:15",
-      "group": "Zajęcia ogólnorozwojowe dla dzieci 10-16 lat",
+      "time": "18:30-19:30",
+      "group": "Zajęcia ogólnorozwojowe dla dzieci 6-16 lat ",
       "coach": "Marcin",
       "room": "17"
     },
@@ -18,48 +11,41 @@
       "day": "Poniedziałek ",
       "time": "19:00-20:00",
       "group": "Trening Obwodowy KAMI COACH",
-      "coach": "Kami coach",
+      "coach": "Kami Coach",
       "room": "16"
     },
     {
       "day": "Poniedziałek",
-      "time": "20:00-21:00",
+      "time": "19:30-20:30",
       "group": "Kalistenika",
       "coach": "Marcin",
-      "room": "16"
-    },
-    {
-      "day": "Wtorek",
-      "time": "17:00–18:00",
-      "group": "Kickboxing",
-      "coach": "Darek",
       "room": "17"
     },
     {
       "day": "Wtorek",
-      "time": "18:15-19:15",
+      "time": "19:00–20:00",
+      "group": "Kickboxing",
+      "coach": "Szymon",
+      "room": "17"
+    },
+    {
+      "day": "Wtorek",
+      "time": "20:15-21:15",
       "group": "BOKS",
       "coach": "Marcin",
       "room": "17"
     },
     {
+      "group": "Trening Obwodowy KAMI COACH",
       "day": "Środa",
-      "time": "17:00-18:00",
-      "group": "Zajęcia ogólnorozwojowe dla dzieci 6-9 lat",
-      "coach": "Marcin",
-      "room": "16"
-    },
-    {
-      "day": "Środa",
-      "time": "18:15-19:15",
-      "group": "Zajęcia ogólnorozwojowe dla dzieci 10-16 lat",
-      "coach": "Marcin",
+      "time": "20:30-21:30",
+      "coach": "Kami Coach",
       "room": "16"
     },
     {
       "day": "Czwartek",
-      "time": "17:30-18:30",
-      "group": "BOKS",
+      "time": "18:00-19:00",
+      "group": "Zajęcia ogólnorozwojowe dla dzieci 6-16 lat ",
       "coach": "Marcin",
       "room": "17"
     },
@@ -69,13 +55,6 @@
       "group": "Kalistenika",
       "coach": "Marcin",
       "room": "16"
-    },
-    {
-      "day": "Piątek",
-      "time": "17:00-18:00",
-      "group": "Kickboxing",
-      "coach": "Darek",
-      "room": "17"
     },
     {
       "day": "Piątek",
@@ -85,9 +64,23 @@
       "room": "16"
     },
     {
+      "day": "Piątek",
+      "time": "19:00-20:00",
+      "group": "Kickboxing",
+      "coach": "Szymon",
+      "room": "17"
+    },
+    {
+      "day": "Piątek",
+      "time": "20:15-21:15",
+      "group": "BOKS",
+      "coach": "Marcin",
+      "room": "17"
+    },
+    {
       "day": "Sobota",
       "time": "8:00-9:00",
-      "group": "Trening Obwodow KAMI COACH",
+      "group": "Trening Obwodowy KAMI COACH",
       "coach": "Kami Coach",
       "room": "16"
     }
