@@ -31,14 +31,14 @@
       "url": "https://www.facebook.com/profile.php?id=100010867635523"
     },
     {
-      "name": "LOK",
-      "logo": "/images/uploads/logo_lok_3-removebg-preview.webp",
-      "url": "https://lok.org.pl/"
-    },
-    {
       "name": "fighters",
       "url": "https://www.facebook.com/profile.php?id=61563878139406",
       "logo": "/images/uploads/624772845_122195485088462604_4938776624799903709_n-removebg-preview.png"
+    },
+    {
+      "name": "LOK",
+      "logo": "/images/uploads/logo_lok_3-removebg-preview.webp",
+      "url": "https://lok.org.pl/"
     }
   ]
 }
