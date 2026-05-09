@@ -16,7 +16,7 @@ async function login(email, password) {
     console.log("Zalogowano:", data.user);
     window.location.href = "/dashboard.html"; // albo inna strona po zalogowaniu
   }
-}
+} 
 
 // Sprawdzanie czy użytkownik jest zalogowany (wrzuć na każdą stronę)
 async function checkUser() {
