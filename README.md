@@ -33,4 +33,4 @@ W `index.html` w sekcji Kontakt znajdziesz iframe z zapytaniem do Google Maps na
 
 Powodzenia! 🥊
 
-Skibidi
+Skibidi :)
