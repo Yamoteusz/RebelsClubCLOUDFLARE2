@@ -1,3 +1,24 @@
 {
-  "ROOT": []
+  "ROOT": [
+    {
+      "logo": "/images/uploads/495016846_3610834032380936_1682801232737503271_n-removebg-preview.png",
+      "name": "PFKB"
+    },
+    {
+      "logo": "/images/uploads/door-1-–-ze-zmianami-1-.png",
+      "name": "LOK"
+    },
+    {
+      "logo": "/images/uploads/gemini_generated_image_ut2902ut2902ut29-removebg-preview.png",
+      "name": "ZGM"
+    },
+    {
+      "logo": "/images/uploads/gosir.png",
+      "name": "GOSIR"
+    },
+    {
+      "logo": "/images/uploads/zwala-group.png",
+      "name": "ZWALA GROUP"
+    }
+  ]
 }
