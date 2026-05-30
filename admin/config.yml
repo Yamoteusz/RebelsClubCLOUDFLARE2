@@ -1,8 +1,8 @@
 backend:
   name: github
   repo: Yamoteusz/RebelsClubCLOUDFLARE2
-  branch: main # upewnij się czy masz main czy master
-  base_url: https://rebels-auth.whoodil5.workers.dev # To stworzymy w kroku 3
+  branch: main
+  base_url: https://rebels-auth.whoodil5.workers.dev
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"

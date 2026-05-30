@@ -351,7 +351,7 @@
       offset: 100
     });
 
-    // Skrypt do dynamicznej animacji liczników w sekcji statystyk
+    // Skrypt dynamicznej animacji liczników
     document.addEventListener("DOMContentLoaded", () => {
       const statsContainer = document.getElementById('stats');
       if(statsContainer) {
@@ -361,10 +361,10 @@
               const values = statsContainer.querySelectorAll('.v');
               values.forEach(el => {
                 const text = el.innerText;
-                const target = parseInt(text.replace(/[^0-9]/g, '')); // wyciąga samą liczbę
+                const target = parseInt(text.replace(/[^0-9]/g, ''));
                 if(!isNaN(target) && target > 0) {
                   let count = 0;
-                  const speed = target / 40; // Im mniejsza liczba, tym szybsza animacja
+                  const speed = target / 40;
                   const update = () => {
                     count += speed;
                     if(count < target) {
@@ -377,7 +377,7 @@
                   update();
                 }
               });
-              observer.disconnect(); // Odpala się tylko przy pierwszym załadowaniu danych
+              observer.disconnect();
             }
           });
         });
@@ -409,44 +409,37 @@
       const installInstructions = document.getElementById('installInstructions');
       let deferredPrompt = null;
 
-      // 1. Wykrywanie systemu (Czy to iPhone/iPad?)
       const userAgent = window.navigator.userAgent.toLowerCase();
       const isIos = /iphone|ipad|ipod/.test(userAgent);
 
-      // 2. Sprawdzamy, czy aplikacja JUŻ jest zainstalowana na pulpicie
       const isInStandaloneMode = () => {
         return ('standalone' in window.navigator && window.navigator.standalone) 
             || window.matchMedia('(display-mode: standalone)').matches;
       };
 
-      // 3. Nasłuchujemy na natywne zdarzenie instalacji Androida (w tle)
       window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault(); // Blokujemy domyślny, mały baner Google
-        deferredPrompt = e; // Zapisujemy "zgodę" na wywołanie instalacji 1-kliknięciem
+        e.preventDefault();
+        deferredPrompt = e;
       });
 
-      // 4. Jeśli apka NIE JEST zainstalowana - na stałe pokazujemy Twój przycisk w menu!
       if (!isInStandaloneMode() && installBtn) {
         installBtn.style.display = 'inline-block';
 
-        // Co się dzieje po kliknięciu "Zainstaluj apkę"?
         installBtn.addEventListener('click', async () => {
-          
-          // SCENARIUSZ A: Android jest w 100% gotowy na natywną instalację (jeden klik)
+
           if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
             if (outcome === 'accepted') {
               console.log('Zainstalowano PWA!');
-              installBtn.style.display = 'none'; // Ukrywamy przycisk po sukcesie
+              installBtn.style.display = 'none';
             }
             deferredPrompt = null;
           } 
-          
-          // SCENARIUSZ B: To jest iOS, ALBO Android zablokował natywne okienko
+
           else {
             if (isIos) {
-              // Wstrzykujemy instrukcję dla Apple
+
               installInstructions.innerHTML = `
                 <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">Aby dodać apkę na iPhone'a:</p>
                 <ol style="padding-left: 20px;">
@@ -454,7 +447,7 @@
                   <li>Wybierz opcję <strong>"Do ekranu początkowego" ➕</strong>.</li>
                 </ol>`;
             } else {
-              // Wstrzykujemy instrukcję awaryjną dla Androida
+
               installInstructions.innerHTML = `
                 <p style="color: var(--muted); font-size: 14px; margin-bottom: 10px;">Aby dodać apkę na Androidzie:</p>
                 <ol style="padding-left: 20px;">
@@ -462,13 +455,13 @@
                   <li>Wybierz z listy opcję <strong>"Dodaj do ekranu głównego"</strong>.</li>
                 </ol>`;
             }
-            // Wyświetlamy nasze okienko!
+
             promptOverlay.style.display = 'flex';
           }
         });
       }
 
-      // Zamykanie okienka
+
       if (closePromptBtn) {
         closePromptBtn.addEventListener('click', () => {
           promptOverlay.style.display = 'none';
@@ -487,20 +480,20 @@
           const item = question.parentElement;
           const answer = item.querySelector('.faq-answer');
           
-          // Jeśli klikamy w otwarte pytanie - zamknij je
+
           if (item.classList.contains('active')) {
             item.classList.remove('active');
             answer.style.maxHeight = null;
           } else {
-            // Zamknij wszystkie inne otwarte pytania (opcjonalne, ale wygląda profesjonalniej)
+
             document.querySelectorAll('.faq-item.active').forEach(activeItem => {
               activeItem.classList.remove('active');
               activeItem.querySelector('.faq-answer').style.maxHeight = null;
             });
             
-            // Otwórz kliknięte pytanie
+
             item.classList.add('active');
-            answer.style.maxHeight = answer.scrollHeight + "px"; // scrollHeight automatycznie dobiera wysokość tekstu
+            answer.style.maxHeight = answer.scrollHeight + "px";
           }
         });
       });

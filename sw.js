@@ -23,9 +23,9 @@ self.addEventListener('fetch', event => {
     caches.match(event.request)
       .then(response => {
         if (response) {
-          return response; // Zwróć z pamięci podręcznej
+          return response;
         }
-        return fetch(event.request); // Pobierz z sieci
+        return fetch(event.request);
       })
   );
 });
