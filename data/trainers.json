@@ -1,8 +1,20 @@
 {
   "ROOT": [
     {
-      "name": "Mateusz S",
-      "photo": "/images/uploads/ea67d02d-69cc-4814-a253-39149dd50b0f.jpg"
+      "tags": [
+        "MMA"
+      ],
+      "photo": "/images/uploads/bez-nazwy-1.png",
+      "name": "Darek",
+      "role": "Trener od zadań specjalnych MMA"
+    },
+    {
+      "photo": "/images/uploads/608678236_25453840820941186_1991291352263716110_n.jpg",
+      "name": "Rafał",
+      "role": "Trener od profesjonalnego kopania!",
+      "tags": [
+        "Kickbox"
+      ]
     }
   ]
 }
