@@ -1,3 +1,8 @@
 {
-  "ROOT": []
+  "ROOT": [
+    {
+      "name": "Karnet miesięczny na wszystkie zajęcia",
+      "price": "300"
+    }
+  ]
 }
