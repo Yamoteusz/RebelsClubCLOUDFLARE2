@@ -1,3 +1,28 @@
 {
-  "ROOT": []
+  "ROOT": [
+    {
+      "day": "Poniedziałek",
+      "time": "17:00",
+      "group": "MMA",
+      "room": "217"
+    },
+    {
+      "day": "ŚRODA",
+      "time": "18:00",
+      "group": "KICKBOX",
+      "room": "218"
+    },
+    {
+      "day": "Czwartek",
+      "time": "17:30",
+      "group": "BOKS",
+      "room": "213"
+    },
+    {
+      "day": "Sobota",
+      "time": "19:30",
+      "group": "MMA",
+      "room": "218"
+    }
+  ]
 }
